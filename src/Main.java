@@ -3,8 +3,8 @@ import java.util.*;
 public class Main {
     public static void main(String args[]) throws Exception {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println(calc(scanner.nextLine()));
+        String a = scanner.nextLine();
+        System.out.println(calc(a));
     }
 
     public static String calc(String SourceString) throws Exception {
@@ -18,6 +18,11 @@ public class Main {
         String[] Roman_Numerals = new String[]{"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
 
         String[] ArrayExpression = SourceString.split(" ");
+
+        int length = ArrayExpression.length;
+
+        if (length > 3)
+            throw new Exception("Ошибка");
 
         for (int i = 0; i < 10; i++) {
             if (Roman_Numerals[i].equals(ArrayExpression[0])) {
@@ -119,8 +124,8 @@ public class Main {
             }
         }
         if (Z1 == 0) {
-            one_condition = Integer.parseInt(ArrayExpression[0]) + Integer.parseInt(ArrayExpression[2]);
-            if (one_condition <= 20) {
+            //one_condition = Integer.parseInt(ArrayExpression[0]) + Integer.parseInt(ArrayExpression[2]);
+            if ((Integer.parseInt(ArrayExpression[0]) > 0 && (Integer.parseInt(ArrayExpression[0]) <= 10)) && (Integer.parseInt(ArrayExpression[2]) > 0 && (Integer.parseInt(ArrayExpression[2]) <= 10))) {
                 switch (ArrayExpression[1]) {
                     case "+":
                         result = Integer.parseInt(ArrayExpression[0]) + Integer.parseInt(ArrayExpression[2]);
@@ -135,7 +140,7 @@ public class Main {
                         result = Integer.parseInt(ArrayExpression[0]) - Integer.parseInt(ArrayExpression[2]);
                         return (String.valueOf(result));
                 }
-            }
+            } else throw new Exception("Ошибка");
         }
 
         if (Z1 == 2) {
@@ -146,6 +151,8 @@ public class Main {
                     if (result < 1) {
                         throw new Exception("Ошибка");
                     }
+
+
                     return (intToRoman(result));
                 case "/":
                     result = Integer.parseInt(Roman_To_Arab[0]) / Integer.parseInt(Roman_To_Arab[2]);
